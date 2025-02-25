@@ -5,12 +5,14 @@ import java.util.*;
 public class Preliminary implements TournamentStage {
     private List<Team> teams;
     private List<Match> ongoingMatches;
+    private List<Match> allMatches;
     private int playedMatches;
     private int totalMatches; // TODO calculate this inside contructor
     private int courts;
 
     public Preliminary(int courts){
         this.ongoingMatches = new ArrayList<>();
+        this.allMatches = new ArrayList<>();
         this.playedMatches = 0;
         this.totalMatches = 0;
         this.courts = courts;
@@ -21,45 +23,55 @@ public class Preliminary implements TournamentStage {
         this.teams = teams;
         this.totalMatches = countMatches(teams.size(), this.courts);
 
-        // shuffle so different teams start each time in case multiple tournaments
-        Collections.shuffle(this.teams);
+        // creates matches based on all the teams, every team meet each other one time
+        for (int i = 0; i < teams.size(); i++) {
+            for (int j = i + 1; j < teams.size(); j++) {
+                Match match = new Match(teams.get(i), teams.get(j));
+                this.allMatches.add(match);
+            }
+        }
+        Collections.shuffle(this.allMatches);
+
     }
 
     // helper playRound()
-    static private List<Match> NextRoundMatches(List<Team> teams, int courts, int matchesLeft){
-        // sort all teams based on number of played matches
-        List<Team> allTeams = new ArrayList<>(teams);
-        allTeams.sort(Comparator.comparingInt(Team::getPlayedMatches));
-        System.out.println("sorterad: " + allTeams);
-
-        List<Match> matches = new ArrayList<>();
-        int maximumMatches = allTeams.size() - 1;
-
-        // ta ett lag i taget hitta en motståndare med minst antal spelade matcher och som laget inte mött
-        for(int i = 0; i < courts; i++){
-
-            Team team1 = allTeams.getFirst();
-            allTeams.removeFirst();
-            Team team2 = null;
-
-
-            // TODO: problem för att det kan bli så att jag i första tar en motståndare som hade passat bättre i andra
-            // kanske kan göra så att jag har alla lag jag INTE mött i en lista istället och väljer ut från den, på så
-            // sätt borde jag kunna kolla ifall bådas motståndare krockar eller inte, kolla med chat om han har några ideer.
-
-            if(team1.getPlayedMatches() < maximumMatches) {// max number of matches for each team
-
+    static private Match findNextMatch(List<Match> matches, List<Team> unavailableTeams){
+        System.out.println("unavailable " + unavailableTeams);
+        int leastPlayed = Integer.MAX_VALUE;
+        Match leastPlayedMatch = null;
+        for(Match match: matches){
+            // check if team already is playing
+            if(!unavailableTeams.contains(match.getTeam1()) && !unavailableTeams.contains(match.getTeam2())) {
+                int played = match.getTeamLeastPlayed();
+                if (played < leastPlayed) {
+                    leastPlayed = played;
+                    leastPlayedMatch = match;
+                }
             }
         }
-        return matches;
+        System.out.println("least played match: " + leastPlayedMatch);
+        return leastPlayedMatch;
+    }
+
+    static private List<Match> nextRoundMatches(List<Match> allMatches, int courts){
+        List<Team> unavailableTeams = new ArrayList<>();
+        List<Match> roundMatches = new ArrayList<>();
+        for(int i = 0; i < courts; i++){
+            Match newMatch = findNextMatch(allMatches, unavailableTeams);
+            if(newMatch != null){
+                roundMatches.add(newMatch);
+                allMatches.remove(newMatch);
+                unavailableTeams.add(newMatch.getTeam1());
+                unavailableTeams.add(newMatch.getTeam2());
+            }
+        }
+        return roundMatches;
     }
 
     @Override
     public void playRound() {
-        // TODO: måste komma på ett sätt så att dem inte spelar mot samma hela tiden
-
-        // select the teams with the lowest games played
-        this.ongoingMatches = NextRoundMatches(this.teams, this.courts, this.totalMatches-this.playedMatches);
+        // har mina nästa matcher, men ska prioritera dem så att dem matcher med lag som har minst spelade, spelas först
+        this.ongoingMatches = nextRoundMatches(this.allMatches, this.courts);
 
         System.out.println(this.ongoingMatches);
     }
@@ -122,3 +134,33 @@ public class Preliminary implements TournamentStage {
         return rounds;
     }
 }
+
+// byter sätt att göra det på
+// helper playRound()
+//static private List<Match> NextRoundMatches(List<Team> teams, int courts, int matchesLeft){
+//    // sort all teams based on number of played matches
+//    List<Team> allTeams = new ArrayList<>(teams);
+//    allTeams.sort(Comparator.comparingInt(Team::getPlayedMatches));
+//    System.out.println("sorterad: " + allTeams);
+//
+//    List<Match> matches = new ArrayList<>();
+//    int maximumMatches = allTeams.size() - 1;
+//
+//    // ta ett lag i taget hitta en motståndare med minst antal spelade matcher och som laget inte mött
+//    for(int i = 0; i < courts; i++){
+//
+//        Team team1 = allTeams.getFirst();
+//        allTeams.removeFirst();
+//        Team team2 = null;
+//
+//
+//        // TODO: problem för att det kan bli så att jag i första tar en motståndare som hade passat bättre i andra
+//        // kanske kan göra så att jag har alla lag jag INTE mött i en lista istället och väljer ut från den, på så
+//        // sätt borde jag kunna kolla ifall bådas motståndare krockar eller inte, kolla med chat om han har några ideer.
+//
+//        if(team1.getPlayedMatches() < maximumMatches) {// max number of matches for each team
+//
+//        }
+//    }
+//    return matches;
+//}

@@ -14,6 +14,9 @@ clean:
 run: build
 	java -jar $(JAR_FILE)
 
+remove_eclipse:
+	rm -rf .settings .classpath .project
+
 # Visa hjälp
 help:
 	@echo "Makefile för Maven-projekt"

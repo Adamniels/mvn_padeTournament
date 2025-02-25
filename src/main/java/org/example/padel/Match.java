@@ -40,6 +40,14 @@ public class Match {
         return team2;
     }
 
+    public int getTeamLeastPlayed(){
+        if(team1.getPlayedMatches() <= team2.getPlayedMatches()){
+            return team1.getPlayedMatches();
+        }else{
+            return team2.getPlayedMatches();
+        }
+    }
+
     @Override
     public String toString(){
         return team1 + " vs " + team2;

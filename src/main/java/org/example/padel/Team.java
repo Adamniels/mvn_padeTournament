@@ -2,6 +2,7 @@ package org.example.padel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Team {
     private final String teamName;
@@ -63,4 +64,18 @@ public class Team {
     }
 
     // TODO: implementera en equal funktion
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Team team = (Team) obj;
+        return Objects.equals(this.teamName, team.teamName);
+    }
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(teamName); // Skapar hash baserat på namn
+    }
 }

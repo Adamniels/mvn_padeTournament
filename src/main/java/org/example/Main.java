@@ -35,29 +35,83 @@ public class Main {
 
         prel.playRound();
         prel.updateRound();
+        System.out.println(team1.getPlayedMatches());
+        System.out.println(team2.getPlayedMatches());
+        System.out.println(team3.getPlayedMatches());
+        System.out.println(team4.getPlayedMatches());
+        System.out.println(team5.getPlayedMatches());
+        System.out.println(team6.getPlayedMatches());
+        System.out.println(team7.getPlayedMatches());
+        System.out.println(team8.getPlayedMatches());
 
         prel.playRound();
         prel.updateRound();
+        System.out.println(team1.getPlayedMatches());
+        System.out.println(team2.getPlayedMatches());
+        System.out.println(team3.getPlayedMatches());
+        System.out.println(team4.getPlayedMatches());
+        System.out.println(team5.getPlayedMatches());
+        System.out.println(team6.getPlayedMatches());
+        System.out.println(team7.getPlayedMatches());
+        System.out.println(team8.getPlayedMatches());
 
         prel.playRound();
         prel.updateRound();
+        System.out.println(team1.getPlayedMatches());
+        System.out.println(team2.getPlayedMatches());
+        System.out.println(team3.getPlayedMatches());
+        System.out.println(team4.getPlayedMatches());
+        System.out.println(team5.getPlayedMatches());
+        System.out.println(team6.getPlayedMatches());
+        System.out.println(team7.getPlayedMatches());
+        System.out.println(team8.getPlayedMatches());
 
         prel.playRound();
         prel.updateRound();
+        System.out.println(team1.getPlayedMatches());
+        System.out.println(team2.getPlayedMatches());
+        System.out.println(team3.getPlayedMatches());
+        System.out.println(team4.getPlayedMatches());
+        System.out.println(team5.getPlayedMatches());
+        System.out.println(team6.getPlayedMatches());
+        System.out.println(team7.getPlayedMatches());
+        System.out.println(team8.getPlayedMatches());
 
         prel.playRound();
         prel.updateRound();
+        System.out.println(team1.getPlayedMatches());
+        System.out.println(team2.getPlayedMatches());
+        System.out.println(team3.getPlayedMatches());
+        System.out.println(team4.getPlayedMatches());
+        System.out.println(team5.getPlayedMatches());
+        System.out.println(team6.getPlayedMatches());
+        System.out.println(team7.getPlayedMatches());
+        System.out.println(team8.getPlayedMatches());
 
         prel.playRound();
         prel.updateRound();
+        System.out.println(team1.getPlayedMatches());
+        System.out.println(team2.getPlayedMatches());
+        System.out.println(team3.getPlayedMatches());
+        System.out.println(team4.getPlayedMatches());
+        System.out.println(team5.getPlayedMatches());
+        System.out.println(team6.getPlayedMatches());
+        System.out.println(team7.getPlayedMatches());
+        System.out.println(team8.getPlayedMatches());
 
         prel.playRound();
         prel.updateRound();
+        System.out.println(team1.getPlayedMatches());
+        System.out.println(team2.getPlayedMatches());
+        System.out.println(team3.getPlayedMatches());
+        System.out.println(team4.getPlayedMatches());
+        System.out.println(team5.getPlayedMatches());
+        System.out.println(team6.getPlayedMatches());
+        System.out.println(team7.getPlayedMatches());
+        System.out.println(team8.getPlayedMatches());
 
         prel.playRound();
         prel.updateRound();
-
-
         System.out.println(team1.getPlayedMatches());
         System.out.println(team2.getPlayedMatches());
         System.out.println(team3.getPlayedMatches());
