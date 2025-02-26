@@ -4,122 +4,57 @@ package org.example;
 import org.example.padel.Match;
 import org.example.padel.Preliminary;
 import org.example.padel.Team;
+import org.example.padel.Tournament;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+    private static void printStartMenu() {
+        System.out.println(
+                "\n==== Start MENU ====\n" +
+                        "(S)tart new Tournement\n" +
+                        "(R)esume Tournement");
+
+    }
+
+    private static void printMainMenu() {
+        System.out.println(
+                "\n==== Tournement Started Menu ====\n" +
+                        "(S)tart new round/show ongoing matches\n" +
+                        "(P)rint stats\n" +
+                        "(U)pdate ongoing matches\n" +
+                        "(Q)uit");
+    }
+
+    private static void printPlayoffMenu() {
+        System.out.println("\n==== Playoff Menu ====\n" +
+                "(S)tart next playoff round\n" +
+                "(P)rint stats preliminary rounds\n" +
+                "(U)pdate playoff matches\n" +
+                "(Q)uit");
+    }
+
     public static void main(String[] args) {
-        Team team1 = new Team("team 1");
-        Team team2 = new Team("team 2");
-        Team team3 = new Team("team 3");
-        Team team4 = new Team("team 4");
-        Team team5 = new Team("team 5");
-        Team team6 = new Team("team 6");
-        Team team7 = new Team("team 7");
-        Team team8 = new Team("team 8");
+        Tournament tournament = new Tournament(2);
+        tournament.addTeam("Team1");
+        tournament.addTeam("Team2");
+        tournament.addTeam("Team3");
+        tournament.addTeam("Team4");
+        //tournament.addTeam("Team5");
+        //tournament.addTeam("Team6");
+        //tournament.addTeam("Team7");
+        //tournament.addTeam("Team8");
 
-        List<Team> teamList = new ArrayList<>();
-        teamList.add(team1);
-        teamList.add(team2);
-        teamList.add(team3);
-        teamList.add(team4);
-        teamList.add(team5);
-        teamList.add(team6);
-//        teamList.add(team7);
-//        teamList.add(team8);
-
-
-        Preliminary prel = new Preliminary(2);
-        prel.start(teamList);
-
-        prel.playRound();
-        prel.updateRound();
-        System.out.println(team1.getPlayedMatches());
-        System.out.println(team2.getPlayedMatches());
-        System.out.println(team3.getPlayedMatches());
-        System.out.println(team4.getPlayedMatches());
-        System.out.println(team5.getPlayedMatches());
-        System.out.println(team6.getPlayedMatches());
-        System.out.println(team7.getPlayedMatches());
-        System.out.println(team8.getPlayedMatches());
-
-        prel.playRound();
-        prel.updateRound();
-        System.out.println(team1.getPlayedMatches());
-        System.out.println(team2.getPlayedMatches());
-        System.out.println(team3.getPlayedMatches());
-        System.out.println(team4.getPlayedMatches());
-        System.out.println(team5.getPlayedMatches());
-        System.out.println(team6.getPlayedMatches());
-        System.out.println(team7.getPlayedMatches());
-        System.out.println(team8.getPlayedMatches());
-
-        prel.playRound();
-        prel.updateRound();
-        System.out.println(team1.getPlayedMatches());
-        System.out.println(team2.getPlayedMatches());
-        System.out.println(team3.getPlayedMatches());
-        System.out.println(team4.getPlayedMatches());
-        System.out.println(team5.getPlayedMatches());
-        System.out.println(team6.getPlayedMatches());
-        System.out.println(team7.getPlayedMatches());
-        System.out.println(team8.getPlayedMatches());
-
-        prel.playRound();
-        prel.updateRound();
-        System.out.println(team1.getPlayedMatches());
-        System.out.println(team2.getPlayedMatches());
-        System.out.println(team3.getPlayedMatches());
-        System.out.println(team4.getPlayedMatches());
-        System.out.println(team5.getPlayedMatches());
-        System.out.println(team6.getPlayedMatches());
-        System.out.println(team7.getPlayedMatches());
-        System.out.println(team8.getPlayedMatches());
-
-        prel.playRound();
-        prel.updateRound();
-        System.out.println(team1.getPlayedMatches());
-        System.out.println(team2.getPlayedMatches());
-        System.out.println(team3.getPlayedMatches());
-        System.out.println(team4.getPlayedMatches());
-        System.out.println(team5.getPlayedMatches());
-        System.out.println(team6.getPlayedMatches());
-        System.out.println(team7.getPlayedMatches());
-        System.out.println(team8.getPlayedMatches());
-
-        prel.playRound();
-        prel.updateRound();
-        System.out.println(team1.getPlayedMatches());
-        System.out.println(team2.getPlayedMatches());
-        System.out.println(team3.getPlayedMatches());
-        System.out.println(team4.getPlayedMatches());
-        System.out.println(team5.getPlayedMatches());
-        System.out.println(team6.getPlayedMatches());
-        System.out.println(team7.getPlayedMatches());
-        System.out.println(team8.getPlayedMatches());
-
-        prel.playRound();
-        prel.updateRound();
-        System.out.println(team1.getPlayedMatches());
-        System.out.println(team2.getPlayedMatches());
-        System.out.println(team3.getPlayedMatches());
-        System.out.println(team4.getPlayedMatches());
-        System.out.println(team5.getPlayedMatches());
-        System.out.println(team6.getPlayedMatches());
-        System.out.println(team7.getPlayedMatches());
-        System.out.println(team8.getPlayedMatches());
-
-        prel.playRound();
-        prel.updateRound();
-        System.out.println(team1.getPlayedMatches());
-        System.out.println(team2.getPlayedMatches());
-        System.out.println(team3.getPlayedMatches());
-        System.out.println(team4.getPlayedMatches());
-        System.out.println(team5.getPlayedMatches());
-        System.out.println(team6.getPlayedMatches());
-        System.out.println(team7.getPlayedMatches());
-        System.out.println(team8.getPlayedMatches());
-
+        tournament.start(true, "first tournament");
+        do{
+            if(tournament.isPlayoffStage()){
+                printPlayoffMenu();
+            }else {
+                printMainMenu();
+            }
+            // TODO: Fortsätt här eller gör klart paddel_tournament
+            tournament.playNextRound();
+        } while(!tournament.updateTournamentRound());
     }
 }

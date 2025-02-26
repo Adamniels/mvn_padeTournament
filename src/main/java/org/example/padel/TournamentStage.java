@@ -7,7 +7,7 @@ public interface TournamentStage {
 
     void playRound();
 
-    void updateRound();
+    boolean updateRound();
 
     boolean isPlayoff();
 }

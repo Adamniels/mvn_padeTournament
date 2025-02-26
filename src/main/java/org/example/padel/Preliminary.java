@@ -36,7 +36,6 @@ public class Preliminary implements TournamentStage {
 
     // helper playRound()
     static private Match findNextMatch(List<Match> matches, List<Team> unavailableTeams){
-        System.out.println("unavailable " + unavailableTeams);
         int leastPlayed = Integer.MAX_VALUE;
         Match leastPlayedMatch = null;
         for(Match match: matches){
@@ -49,7 +48,6 @@ public class Preliminary implements TournamentStage {
                 }
             }
         }
-        System.out.println("least played match: " + leastPlayedMatch);
         return leastPlayedMatch;
     }
 
@@ -79,7 +77,7 @@ public class Preliminary implements TournamentStage {
 
 
     @Override
-    public void updateRound() {
+    public boolean updateRound() {
         Scanner scanner = new Scanner(System.in);
 
         for (int i = 0; i < ongoingMatches.size(); i++) {
@@ -114,6 +112,7 @@ public class Preliminary implements TournamentStage {
         // remove all ongoing matches
         this.playedMatches += ongoingMatches.size();
         this.ongoingMatches.clear();
+        return this.allMatches.isEmpty();
 
     }
 
