@@ -53,7 +53,7 @@ public class Main {
             }else {
                 printMainMenu();
             }
-            // TODO: Fortsätt här eller gör klart paddel_tournament
+            // TODO: Fortsätt här eller gör klart playoff
             tournament.playNextRound();
         } while(!tournament.updateTournamentRound());
     }
