@@ -21,4 +21,10 @@ public class Utils {
         }
         throw new RuntimeException("something went wrong in getting the answer");
     }
+    public enum PlayoffRound {
+        QUARTERFINALS,
+        SEMIFINALS,
+        FINAL,
+        FINISHED;
+    }
 }

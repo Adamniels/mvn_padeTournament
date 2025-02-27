@@ -1,6 +1,7 @@
 package org.example;
 
 
+import org.example.library.Utils;
 import org.example.padel.Match;
 import org.example.padel.Preliminary;
 import org.example.padel.Team;
@@ -35,26 +36,92 @@ public class Main {
                 "(Q)uit");
     }
 
-    public static void main(String[] args) {
-        Tournament tournament = new Tournament(2);
-        tournament.addTeam("Team1");
-        tournament.addTeam("Team2");
-        tournament.addTeam("Team3");
-        tournament.addTeam("Team4");
-        //tournament.addTeam("Team5");
-        //tournament.addTeam("Team6");
-        //tournament.addTeam("Team7");
-        //tournament.addTeam("Team8");
+    private static void eventLoop(){
+        Tournament tournament = null;
 
-        tournament.start(true, "first tournament");
-        do{
-            if(tournament.isPlayoffStage()){
+        printStartMenu();
+        char ans = Utils.getAnswer("SR");
+        switch (ans) {
+            case 'S':
+                tournament = new Tournament(2);
+                tournament.addTeam("Team1");
+                tournament.addTeam("Team2");
+                tournament.addTeam("Team3");
+                tournament.addTeam("Team4");
+                //tournament.addTeam("Team5");
+                //tournament.addTeam("Team6");
+                //tournament.addTeam("Team7");
+                //tournament.addTeam("Team8");
+
+                tournament.start(true, "First tournament");
+                break;
+
+            case 'R':
+                // TODO: resume existing one(how can i do this?)
+
+                // tournement.restoreFromFile(file); något sånt kanske?
+                break;
+
+            default:
+                break;
+        }
+
+        boolean ongoingGames = false;
+        boolean tournementStarted = true;
+        boolean finalMatch = false;
+        while (tournementStarted) {
+            if(tournament == null){
+                throw new RuntimeException("tournament not be initilazed");
+            }
+
+            if (tournament.isPlayoffStage()) {
                 printPlayoffMenu();
-            }else {
+            } else {
                 printMainMenu();
             }
-            // TODO: Fortsätt här eller gör klart playoff
-            tournament.playNextRound();
-        } while(!tournament.updateTournamentRound());
+
+            ans = Utils.getAnswer("SPUQ");
+            switch (ans) {
+                case 'S':
+                    if (ongoingGames) {
+                        System.out.println("There is already a round being played, update it before starting a new\n");
+                    } else {
+                        tournament.playNextRound();
+                        ongoingGames = true;
+                    }
+                    break;
+
+                case 'P':
+                    tournament.printStanding();
+                    break;
+
+                case 'U':
+                    if (ongoingGames) {
+                        finalMatch = tournament.updateTournamentRound();
+                        ongoingGames = false;
+                        if (finalMatch) {
+                            // last game
+                            System.out.println("TOURNEMENT IS OVER");
+                            tournementStarted = false;
+                        }
+                    } else {
+                        System.out.println("No ongoing matches, play a new round\n");
+                    }
+                    break;
+
+                case 'Q':
+                    tournementStarted = false;
+                    //tournament.saveTournement();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+    }
+
+    public static void main(String[] args) {
+       eventLoop();
     }
 }

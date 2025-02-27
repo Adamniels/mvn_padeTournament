@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Team {
+public class Team implements Comparable<Team>{
     private final String teamName;
     private int playedMatches;
     private int wonMatches;
@@ -23,7 +23,7 @@ public class Team {
         this.playedAgainst = new ArrayList<>();
     }
 
-    public void updateTeam(int won, int scoreDiff, Team opponent){
+    public void updateTeam(int scoreDiff, int won, Team opponent){
         this.wonMatches += won;
         this.scoreDiff += scoreDiff;
         this.playedMatches++;
@@ -78,4 +78,16 @@ public class Team {
     public int hashCode() {
         return Objects.hash(teamName); // Skapar hash baserat på namn
     }
+
+    @Override
+    public int compareTo(Team o) {
+        // Första kriteriet: Antal vinster (fallande ordning)
+        if (this.getWonMatches() != o.getWonMatches()) {
+            return Integer.compare(o.getWonMatches(), this.getWonMatches());
+        }
+        // Andra kriteriet: Poängdifferens (fallande ordning)
+        return Integer.compare(o.scoreDiff, this.scoreDiff);
+    }
+
+
 }
