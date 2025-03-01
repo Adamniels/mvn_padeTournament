@@ -37,9 +37,13 @@ public class Preliminary implements TournamentStage {
     // helper playRound()
     static private Match findNextMatch(List<Match> matches, List<Team> unavailableTeams){
         int leastPlayed = Integer.MAX_VALUE;
+        int leastPlayedAgainst = Integer.MAX_VALUE;
+        Team against = null;
         Match leastPlayedMatch = null;
         for(Match match: matches){
             // check if team already is playing
+            // TODO: måste priotera matcher som är mot motståndare med lägst antal spelade matcher
+
             if(!unavailableTeams.contains(match.getTeam1()) && !unavailableTeams.contains(match.getTeam2())) {
                 int played = match.getTeamLeastPlayed();
                 if (played < leastPlayed) {

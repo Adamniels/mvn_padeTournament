@@ -48,7 +48,7 @@ public class Main {
                 tournament.addTeam("Team2");
                 tournament.addTeam("Team3");
                 tournament.addTeam("Team4");
-                //tournament.addTeam("Team5");
+                tournament.addTeam("Team5");
                 //tournament.addTeam("Team6");
                 //tournament.addTeam("Team7");
                 //tournament.addTeam("Team8");
